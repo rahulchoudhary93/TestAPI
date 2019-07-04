@@ -1,0 +1,9 @@
+{
+  "${URL}": "http://${VAR;host}/api/v1/create",
+  "${HEADER}": "",
+  "${REQUEST}" : {
+    "name":"${RETURN;AUTOGENERATE;C;9;name}",
+    "salary":"${VAR;salary}",
+    "age":"${VAR;age}"
+    }
+}
