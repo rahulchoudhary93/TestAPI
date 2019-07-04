@@ -47,11 +47,11 @@ It can be provided in ${REQUEST},  ${URL}, and ${HEADER}.
 
 It must be used 3 extra tags each separated by semi-colon ‘;’ character– 
 
-*C/N/A – C stands for only characters, N for Number, B for Alphanumeric
+* C/N/A – C stands for only characters, N for Number, B for Alphanumeric
 	
-*Length – Length accepts integer value describing length of the value generated
+* Length – Length accepts integer value describing length of the value generated
 	
-*VariableName – It accepts a string which acts as a variable to store the generated value
+* VariableName – It accepts a string which acts as a variable to store the generated value
 
 Example –
 
@@ -64,7 +64,7 @@ It can be provided in ${REQUEST},  ${URL}, and ${HEADER}.
 
 It must be used with VAR or AUTOGENERATE tags separated by a semi-colon – 
 
-*VariableName – It accepts a string which acts as a variable to store the generated value
+* VariableName – It accepts a string which acts as a variable to store the generated value
 	
 It can be used in combination with the autogenerate tag as follows – 
 
