@@ -14,6 +14,7 @@ class TESTAPI(object):
         urlkey = "${URL}"
         headerkey = "${HEADER}"
         requestkey = "${REQUEST}"
+        methodkey = "${METHOD}"
         self.template_path = template_path
         self.template_file_name = os.path.splitext(os.path.basename(template_path))[0]
         print(self.template_file_name)
@@ -29,6 +30,8 @@ class TESTAPI(object):
         print("Headers:", self.headers)
         self.request = self.template_content[requestkey]
         print("Request:", self.request)
+        self.method = self.template_content[methodkey]
+        print("Method:", self.method)
 
         self.variable_list = {}
         self.returned_params = {}
@@ -203,7 +206,16 @@ class TESTAPI(object):
             updated_request = ""
 
         print(url_string, "\n", updated_header, "\n", updated_request)
-        resp = requests.post(url_string, headers=updated_header, json=updated_request)
+        if self.method == "POST":
+            resp = requests.post(url_string, headers=updated_header, json=updated_request)
+        elif self.method == "GET":
+            resp = requests.get(url_string, headers=updated_header, json=updated_request)
+        elif self.method == "PUT":
+            resp = requests.put(url_string, headers=updated_header, json=updated_request)
+        elif self.method == "DELETE":
+            resp = requests.delete(url_string, headers=updated_header, json=updated_request)
+        else:
+            return "Method not supported"
         print(resp.status_code, resp)
         if resp.status_code in (200, 201):
             responsejson = json.dumps(resp.json())
@@ -223,9 +235,12 @@ def testrest():
         total_rows = data_wb.sheet_by_name('request').nrows
         print(total_rows)
         for datarow in range(1, total_rows):
-            test = TESTAPI(template_path, datarow)
-            response = test.run_template()
-            print(response)
+            try:
+                test = TESTAPI(template_path, datarow)
+                response = test.run_template()
+                print(response)
+            except Exception as e:
+                print("Test Failed for datarow {}. ".format(datarow), e)
 
 
 if __name__ == '__main__':
