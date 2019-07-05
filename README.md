@@ -1,6 +1,7 @@
 # TestAPI
 
 TestAPI is a template based automation framework for Rest API.
+Currently, data in JSON format is supported.
 
 ## Getting Started
 
@@ -15,6 +16,7 @@ Example – Inside ‘template’ directory ‘demo.json’ file is created.
 ```
 {
   "${URL}": "http://${VAR;host}/api/v1/create",
+  "${METHOD}": "POST"
   "${HEADER}": "",
   "${REQUEST}" : {
     "name":"${RETURN;AUTOGENERATE;C;9;name}",
