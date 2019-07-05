@@ -1,5 +1,6 @@
 {
   "${URL}": "http://${VAR;host}/api/v1/create",
+  "${METHOD}": "POST",
   "${HEADER}": "",
   "${REQUEST}" : {
     "name":"${RETURN;AUTOGENERATE;C;9;name}",
