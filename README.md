@@ -41,6 +41,25 @@ ${VAR;name}	123	23	${RETURNG;VAR;id}
 
 ```
 
+## Step-3:
+
+Ohh! There is no more step as promised. Just a few notes below.
+
+## Variable Scoping
+There are 3 ways a variable can be defined. The tool will look for the variables as per the following priority.
+
+* CONFIG FILE (config.ini) - This file comes at the top in variable scoping. Any environment specific or very generic variables can be defined here.
+```
+[CONFIGPARAMS]
+host = dummy.restapiexample.com
+
+```
+
+* GLOBAL VARIABLES (global.var) - Any variable found in this file will come in priority after config variables. ${RETURNG;VariableName} is a special tag which writes these variables.
+
+* Excel Files - After config and global variables, the data files will be looked into to resolve the variables.
+
+
 ## Okay, let’s see the inbuilt tags supported by TestAPI
 
 ### ${AUTOGENERATE;C/N/A;Length;VariableName} 
