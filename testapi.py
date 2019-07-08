@@ -224,7 +224,7 @@ class TESTAPI(object):
         else:
             raise Exception("API failed with status code: {}".format(resp.status_code))
 
-def testrest():
+def testrest(datarow=None):
     templates = os.listdir(os.path.join(os.path.curdir, 'template'))
     print(templates)
     for file in templates:
@@ -232,15 +232,20 @@ def testrest():
         print(template_path)
         data_wb = xlrd.open_workbook(
             os.path.join(os.path.curdir, 'apidata/{}.xlsx'.format(os.path.splitext(os.path.basename(file))[0])))
-        total_rows = data_wb.sheet_by_name('request').nrows
+        if datarow == None:
+            total_rows = range(1, data_wb.sheet_by_name('request').nrows)
+        elif ',' in datarow:
+            total_rows = range(datarow.split(','))
+        else:
+            total_rows = [datarow]
         print(total_rows)
-        for datarow in range(1, total_rows):
+        for row in total_rows:
             try:
-                test = TESTAPI(template_path, datarow)
+                test = TESTAPI(template_path, row)
                 response = test.run_template()
                 print(response)
             except Exception as e:
-                print("Test Failed for datarow {}. ".format(datarow), e)
+                print("Test Failed for datarow {}. ".format(row), e)
 
 
 if __name__ == '__main__':
